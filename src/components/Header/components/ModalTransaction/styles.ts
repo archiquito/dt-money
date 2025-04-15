@@ -112,17 +112,31 @@ export const BtnTransactionRegister = styled(BaseButton)`
 
 export const ContainerBtnInOut = styled.div`
   display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const BtnInOut = styled(BaseButton)`
   background: ${({ theme }) => theme["gray-700"]};
-  color: ${({ theme }) => theme.white};
+  color: ${({ theme }) => theme["gray-300"]};
   width: 50%;
+  font-weight: normal !important;
+  font-size: 1rem !important;
+  &.entries {
+    background: ${({ theme }) => theme["gray-600"]};
+    & svg {
+      color: ${({ theme }) => theme["green-300"]};
+    }
+  }
+  &.exits {
+    background: ${({ theme }) => theme["gray-600"]};
+    & svg {
+      color: ${({ theme }) => theme["red-300"]};
+    }
+  }
   &:hover {
     background: ${({ theme }) => theme["gray-600"]};
     color: ${({ theme }) => theme.white};
