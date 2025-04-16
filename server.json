@@ -1,0 +1,60 @@
+{
+  "transactions": [
+    {
+      "id": "1",
+      "description": "Transaction 1",
+      "type": "income",
+      "category": "Venda",
+      "price": 14000,
+      "createdAt": "2023-10-01T10:00:00Z"
+    },
+    {
+      "id": "2",
+      "description": "Hamburger",
+      "type": "outcome",
+      "category": "Alimentação",
+      "price": 50,
+      "createdAt": "2023-10-05T08:00:00Z"
+    },
+    {
+      "description": "Nova transação teste",
+      "price": 111,
+      "category": "IT & Programming",
+      "createdAt": "2025-04-16T00:00:00.000Z",
+      "type": "income",
+      "id": "Rgv6AjP"
+    },
+    {
+      "description": "Venda de curso",
+      "price": 1234,
+      "category": "React",
+      "createdAt": "2025-04-02T00:00:00.000Z",
+      "type": "outcome",
+      "id": "np-_RJu"
+    },
+    {
+      "description": "Novo hamburguer",
+      "price": 35,
+      "category": "Alimentação",
+      "createdAt": "2025-04-16T00:00:00.000Z",
+      "type": "outcome",
+      "id": "kHpOjau"
+    },
+    {
+      "description": "Curso Full Stack",
+      "price": 1256,
+      "category": "IT & Programming",
+      "createdAt": "2025-04-18T00:00:00.000Z",
+      "type": "income",
+      "id": "IB0Cou-"
+    },
+    {
+      "description": "Chocolate",
+      "price": 12,
+      "category": "Alimentação",
+      "createdAt": "2025-04-19T00:00:00.000Z",
+      "type": "outcome",
+      "id": "4pKVgpt"
+    }
+  ]
+}

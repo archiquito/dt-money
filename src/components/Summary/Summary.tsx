@@ -1,7 +1,10 @@
 import { SummaryCard, SummaryContainer } from "./styles";
 import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from "phosphor-react";
+import { useSummary } from "./useSummary";
 
 export function Summary () {
+    const summary = useSummary();
+
     return (
         <SummaryContainer>
             <SummaryCard className="entries">
@@ -9,7 +12,10 @@ export function Summary () {
                     <span>Entradas</span>
                     <ArrowCircleUp size={32} />
                 </header>
-                <strong>R$ 17.400,00</strong>
+                <strong>{new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(summary.income)}</strong>
             </SummaryCard>
 
             <SummaryCard className="exits">
@@ -17,7 +23,10 @@ export function Summary () {
                     <span>Saídas</span>
                    <ArrowCircleDown size={32} />
                 </header>
-                <strong>- R$ 1.259,00</strong>
+                <strong>- {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(summary.outcome)}</strong>
             </SummaryCard>
 
             <SummaryCard className="total">
@@ -25,7 +34,10 @@ export function Summary () {
                     <span>Total</span>
                     <CurrencyDollar size={32} />
                 </header>
-                <strong>R$ 16.141,00</strong>
+                <strong>R$ {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(summary.total)}</strong>
             </SummaryCard>
         </SummaryContainer>
     )

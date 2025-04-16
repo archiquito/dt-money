@@ -1,54 +1,67 @@
+
+import { useContext } from "react";
 import { Header } from "../../components/Header/Header";
 import { Summary } from "../../components/Summary/Summary";
-import { SearchForm } from "./components/searchForm";
+import { SearchForm } from "./components/SearchForm";
 import {
   TransactionsContainer,
   TableContainer,
   PriceHighlight,
 } from "./styles";
+import { transactionContext } from "../../context/contextTransaction";
+
 
 export function Transactions() {
+    const { dataTransaction, isLoading } = useContext(transactionContext);
+    console.log({dataTransaction})
   return (
     <>
       <Header />
       <Summary />
-    
       <TransactionsContainer>
-      <SearchForm />
+        <SearchForm />
         <TableContainer>
           <tbody>
-            <tr>
-              <td>Desenvolvimento de site</td>
-              <td>
-                <PriceHighlight variant="income">R$ 12.000,00</PriceHighlight>
-              </td>
-              <td>Venda</td>
-              <td>13/04/2023</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de site</td>
-              <td>
-              <PriceHighlight variant="outcome">-R$ 12.000,00</PriceHighlight>
-              </td>
-              <td>Venda</td>
-              <td>13/04/2023</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de site</td>
-              <td>
-              <PriceHighlight variant="outcome">-R$ 12.000,00</PriceHighlight>
-              </td>
-              <td>Venda</td>
-              <td>13/04/2023</td>
-            </tr>
-            <tr>
-              <td>Desenvolvimento de site</td>
-              <td>
-                <PriceHighlight variant="income">R$ 12.000,00</PriceHighlight>
-              </td>
-              <td>Venda</td>
-              <td>13/04/2023</td>
-            </tr>
+            <>
+            {isLoading && ( 
+              <tr>
+                <td colSpan={4} style={{ textAlign: "center" }}>
+                  Loading...
+                </td>
+              </tr>
+            )}
+            {dataTransaction.length > 0 && !isLoading && dataTransaction.map((transaction) => {
+              return (
+                <tr key={transaction.id}>
+                  <td>{transaction.description}</td>
+                  <td>
+                    <PriceHighlight variant={transaction.type}>
+                     {transaction.type === "outcome" && "- "}
+                      {new Intl.NumberFormat("pt-BR", {
+                        style: "currency",
+                        currency: "BRL",
+                      }).format(transaction.price)}
+                    </PriceHighlight>
+                  </td>
+                  <td>{transaction.category}</td>
+                  <td>
+                    {new Intl.DateTimeFormat("pt-BR").format(
+                      new Date(transaction.createdAt)
+                    )}
+                  </td>
+                </tr>
+              );
+            }
+            )}
+            
+            {dataTransaction.length === 0 && !isLoading && (
+              <tr>
+                <td colSpan={4} style={{ textAlign: "center" }}>
+                  No transactions found.
+                </td>
+              </tr>
+            )}
+            </>
           </tbody>
         </TableContainer>
       </TransactionsContainer>

@@ -14,6 +14,7 @@ export const TableContainer = styled.table`
     background: ${({ theme }) => theme["gray-600"]};
     padding: 1.25rem 2rem;
     margin: 10rem;
+    text-align: left;
     &:first-child {
       width: 50%;
       text-align: left;
@@ -22,15 +23,12 @@ export const TableContainer = styled.table`
     }
     &:nth-child(2) {
       width: 20%;
-      text-align: right;
     }
     &:nth-child(3) {
       width: 20%;
-      text-align: center;
     }
     &:last-child {
       width: 10%;
-      text-align: right;
       border-top-right-radius: 6px;
       border-bottom-right-radius: 6px;
     }
