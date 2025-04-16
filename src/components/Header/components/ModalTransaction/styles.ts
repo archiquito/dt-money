@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import * as Dialog from "@radix-ui/react-dialog";
+import * as RadioGroup from "@radix-ui/react-radio-group";
 
 export const ModalOverlay = styled(Dialog.Overlay)`
-  background-color: ${({ theme }) => theme["black-900"]};
+  background-color: ${({ theme }) => theme["gray-900"]};
   position: fixed;
   inset: 0;
   animation: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
@@ -110,7 +111,7 @@ export const BtnTransactionRegister = styled(BaseButton)`
   }
 `;
 
-export const ContainerBtnInOut = styled.div`
+export const ContainerBtnInOut = styled(RadioGroup.Root)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,27 +120,36 @@ export const ContainerBtnInOut = styled.div`
   margin-bottom: 1rem;
 `;
 
-export const BtnInOut = styled(BaseButton)`
+interface BtnInOutProps {
+  variant: "income" | "outcome";
+}
+
+export const BtnInOut = styled(RadioGroup.Item)<BtnInOutProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: none;
+  border-radius: 6px;
+  padding: 1rem 2rem;
+  cursor: pointer;
+  transition: color 0.2s;
   background: ${({ theme }) => theme["gray-700"]};
   color: ${({ theme }) => theme["gray-300"]};
   width: 50%;
   font-weight: normal !important;
   font-size: 1rem !important;
-  &.entries {
-    background: ${({ theme }) => theme["gray-600"]};
-    & svg {
-      color: ${({ theme }) => theme["green-300"]};
-    }
+  & svg {
+    color: ${({ theme, variant }) =>
+      variant === "income" ? theme["green-300"] : theme["red-300"]};
   }
-  &.exits {
-    background: ${({ theme }) => theme["gray-600"]};
-    & svg {
-      color: ${({ theme }) => theme["red-300"]};
-    }
-  }
-  &:hover {
-    background: ${({ theme }) => theme["gray-600"]};
+  &[data-state="checked"] {
     color: ${({ theme }) => theme.white};
-    border-color: ${({ theme }) => theme["gray-600"]};
+    border: none;
+    background: ${({ theme, variant }) =>
+      variant === "income" ? theme["green-500"] : theme["red-500"]};
+    & svg {
+      color: ${({ theme }) => theme.white}; 
+    }
   }
 `;

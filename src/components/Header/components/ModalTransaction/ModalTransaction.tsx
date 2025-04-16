@@ -36,8 +36,8 @@ export function ModalTransaction() {
             <input type="text" placeholder="Categoria" required />
             <input type="date" placeholder="Data" required />
             <ContainerBtnInOut>
-              <BtnInOut type="button" className="entries"><ArrowCircleUp size={32} /> Entrada</BtnInOut>
-              <BtnInOut type="button" className="exits"><ArrowCircleDown size={32} />Saída</BtnInOut>
+              <BtnInOut type="button" variant="income" value="income"><ArrowCircleUp size={32} /> Entrada</BtnInOut>
+              <BtnInOut type="button" variant="outcome" value="outcome"><ArrowCircleDown size={32} />Saída</BtnInOut>
             </ContainerBtnInOut>
             <BtnTransactionRegister type="submit">
               Cadastrar
