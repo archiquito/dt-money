@@ -14,7 +14,7 @@ import {
   BtnInOut,
   ContainerBtnInOut,
 } from "./styles";
-import { useContext } from "react";
+import { useContextSelector } from "use-context-selector";
 import { transactionContext } from "../../../../context/contextTransaction";
 
 const transactionFormSchema = z.object({
@@ -28,7 +28,12 @@ const transactionFormSchema = z.object({
 type TransactionFormInputs = z.infer<typeof transactionFormSchema>;
 
 export function ModalTransaction() {
-  const { createTransaction } = useContext(transactionContext)
+  const createTransaction = useContextSelector(
+    transactionContext,
+    (context) => {
+      return context.createTransaction;
+    }
+  );
 
   const { register, handleSubmit, reset, control } =
     useForm<TransactionFormInputs>({
@@ -39,7 +44,7 @@ export function ModalTransaction() {
         category: "",
         date: "",
         type: "income",
-      }, 
+      },
     });
 
   const handleCreateNewTransaction = async (data: TransactionFormInputs) => {
@@ -52,7 +57,7 @@ export function ModalTransaction() {
       type,
     };
     await createTransaction(transactionData);
-        reset();
+    reset();
   };
 
   return (

@@ -1,5 +1,5 @@
 
-import { useContext } from "react";
+import { useContextSelector } from "use-context-selector";
 import { Header } from "../../components/Header/Header";
 import { Summary } from "../../components/Summary/Summary";
 import { SearchForm } from "./components/SearchForm";
@@ -12,7 +12,12 @@ import { transactionContext } from "../../context/contextTransaction";
 
 
 export function Transactions() {
-    const { dataTransaction, isLoading } = useContext(transactionContext);
+    const  dataTransaction  = useContextSelector(transactionContext, (context) => {
+      return context.dataTransaction
+    });
+    const  isLoading  = useContextSelector(transactionContext, (context) => {
+      return context.isLoading
+    });
     console.log({dataTransaction})
   return (
     <>
